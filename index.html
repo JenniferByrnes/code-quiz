@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Code Quiz</title>
+  <link rel="stylesheet" href="./assets/css/style.css">
+</head>
+
+<body>
+  
+  <header>
+    <h1 class="page-title">Code Quiz</h1>
+    <p>Ready to test your knowledge!  Let's see what you know!  How many questions can you answer before time runs out?  Keep in mind that incorrect guesses will cost you 10 seconds.  Will your initials join the list of winners?</p>
+    <form id="quiz-form">
+      <div class="form-group">
+        <input type="text" name="winner-name" class="text-input" placeholder="Enter your initials." />
+      </div>
+      <div class="form-group">
+        <button class="btn" id="save-score" type="submit">Save Score</button>
+      </div>
+      <div class="form-group">
+        <button class="btn" id="view-score" type="submit">View High Scores</button>
+      </div>
+    </form>
+  </header>
+
+  
+  <main class="page-content" id="page-content">
+    <!---- quizs To Do -->
+    <section class="quiz-list-wrapper">
+      <h2 class="list-title">quizs To Do</h2>
+      <ul class="quiz-list" id="quizs-to-do"></ul>
+  </main>
+  <footer>
+    &copy;2022 by Jennifer Byrnes
+  </footer>
+  
+  <script src="./assets/js/script.js"></script>
+
+</body>
+</html>
