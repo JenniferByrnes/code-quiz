@@ -38,10 +38,10 @@ var saveHighScore = function (event) {
   document.querySelector("input[name='winner-name']").value = "";
 
   // set score
-  var quizWinnerObj = {
+  const quizWinnerObj = {
+    winnerId: 0,
     name: quizNameInput,
-    score: "100"
-  };
+    score: 100};
 
   saveHighScoreToLocal(quizWinnerObj);
 };
