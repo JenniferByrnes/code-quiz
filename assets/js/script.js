@@ -6,6 +6,7 @@ var pageContentEl = document.querySelector("#page-content");
 
 // create array to hold winning scores for saving
 var winners = [];
+playerScore = 60;
 
 var startQuiz = function() {
   console.log("starting quiz");
@@ -14,21 +15,63 @@ var startQuiz = function() {
   console.log("wrong answer - lose time");
   console.log("right answer - earn points");
   console.log("ending quiz - time is up");
-  console.log("Do we have a winner?");
-  console.log("No - console them");
-  console.log("Yes - compare to other high score if high, save score - display button");
   console.log("offer to play again");
 }
 
-// This will ultimately save the winners initials to local storage in an array.
 // Must compare to existing high score and only allow if winner is in the top 10
+var handleHighScore = function() {
+
+  var winner = false;
+
+  //MOVED this code TO global
+  // Load high scores into highScores array
+  //var highScores = collectHighScores();
+  //console.log("Finished collectHighScores");
+  //console.log(highScores);
+  console.log("in handleHighScore");
+  console.log(highScores);
+  if (!highScores) {
+    // Player is first to save score - show button
+    winner = true;
+    console.log("you are first");
+    console.log(highScores);
+  }
+  else {
+    console.log("else - prepart to looping through high scores");
+    console.log(highScores.length, winner);
+    for (i=0; winner=false && i<highScores.length; i++){
+      //check scores
+      //if score is high - show button
+      console.log("looping through high scores");
+      console.log(highScores);
+    }
+  }
+
+  // if player has high score show button to save score
+  if (winner) {
+    //show button
+    window.alert("you are a winner show button to SAVE SCORE");
+  } else {
+    window.alert("you are not a winner Try again");
+  }
+
+  //const quizWinnerObj = {
+  //  winnerId: 0,
+  //  name: playerInitials,
+  //  score: 100};
+
+};
+
+
+// This will save the winners initials to local storage in an array.
+// Player clicked "Save Score" to get here
 var saveHighScore = function (event) {
   // Winner must type initials
   event.preventDefault();
-  var quizNameInput = document.querySelector("input[name='winner-name']").value;
+  var playerInitials = document.querySelector("input[name='winner-name']").value;
 
   // check if inputs are empty (validate)
-  if (!quizNameInput) {
+  if (!playerInitials) {
     alert("Please enter your initials");
     console.log("returning false - empty initials");
     return false;
@@ -39,10 +82,18 @@ var saveHighScore = function (event) {
 
   // set score
   const quizWinnerObj = {
-    winnerId: 0,
-    name: quizNameInput,
+    name: playerInitials,
     score: 100};
 
+    // Assuming that we have new score and we are just adding it here
+  //for (i=0; i<highScores.length; i++) {
+  //  quizWinnerObj[i+1] = highScores[i]
+  //}  
+
+
+  highScores.name.push(quizWinnerObj.playerInitials);
+  console.log("highScores in saveHighScore function");
+  console.log(highScores);
   saveHighScoreToLocal(quizWinnerObj);
 };
 
@@ -51,7 +102,8 @@ var saveHighScoreToLocal = function (winnerObj) {
   localStorage.setItem("highScore", JSON.stringify(winnerObj));
 };
 
-var collectHighScore = function() {
+// Reads high scores from local storage and puts them in highScores array
+var collectHighScores = function() {
   var highScores = JSON.parse(localStorage.getItem("highScore"));
 
   // if there are no high scores, set high scores to an empty array and return out of the function
@@ -59,10 +111,7 @@ var collectHighScore = function() {
     console.log("No saved high scores - you are first!");
     return false;
   }
-  console.log("Saved high scores found!");
-  console.log(highScores);
-  window.alert("highScores");
-  // else, load up saved high scores
+  console.log("collectingHighScores() - Saved high scores found!");
 
   return highScores;
 };
@@ -70,7 +119,7 @@ var collectHighScore = function() {
 var viewHighScore = function() {
   // Winner must type initials
   event.preventDefault();
-  var highScores = collectHighScore();
+  var highScores = collectHighScores();
 
   // loop through saved high scores array
   for (var i = 0; i < highScores.length; i++) {
@@ -85,4 +134,12 @@ formEl.querySelector("#save-score").addEventListener("click", saveHighScore);
 // View high score - button clicked
 formEl.querySelector("#view-score").addEventListener("click", viewHighScore);
 
+// This is the quiz body
 startQuiz();
+// Need highScores array for remainder of code
+const highScores = collectHighScores();
+console.log("Finished collectHighScores");
+console.log(highScores);
+
+// Check about saving high score
+handleHighScore();
