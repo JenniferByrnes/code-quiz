@@ -43,29 +43,39 @@ var saveHighScore = function (event) {
     score: "100"
   };
 
-  var saveHighScoreToLocal = function() {
-    console.log("getting ready to saveHighScore");
-    localStorage.setItem("highScore", JSON.stringify(quizWinnerObj));
-  };
-  saveHighScoreToLocal();
+  saveHighScoreToLocal(quizWinnerObj);
 };
 
-var viewHighScore = function() {
-  var highScores = localStorage.getItem("quizs");
+var saveHighScoreToLocal = function (winnerObj) {
+  console.log("getting ready to saveHighScore");
+  localStorage.setItem("highScore", JSON.stringify(winnerObj));
+};
+
+var collectHighScore = function() {
+  var highScores = JSON.parse(localStorage.getItem("highScore"));
+
   // if there are no high scores, set high scores to an empty array and return out of the function
   if (!highScores) {
     console.log("No saved high scores - you are first!");
     return false;
   }
   console.log("Saved high scores found!");
+  console.log(highScores);
+  window.alert("highScores");
   // else, load up saved high scores
 
-  // parse into array of objects
-  highScores = JSON.parse(highScores);
+  return highScores;
+};
+
+var viewHighScore = function() {
+  // Winner must type initials
+  event.preventDefault();
+  var highScores = collectHighScore();
 
   // loop through saved high scores array
   for (var i = 0; i < highScores.length; i++) {
     //createTaskEl(savedTasks[i]); look here for setting array object
+    console.log("looping through high scores - call function here");
   }
 };
 
