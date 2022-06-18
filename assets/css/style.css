@@ -147,6 +147,10 @@ footer {
   box-shadow: 0 3px var(--grey);
 }
 
+.hide {
+  display: none;
+}
+
 .btn:hover {
   box-shadow: 0 2px var(--grey);
   top: -2px;
