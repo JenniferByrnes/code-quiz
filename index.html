@@ -12,22 +12,24 @@
 <body>
   
   <header>
-    <h1 class="page-title">Code Quiz</h1>
+    <h1 class="page-title">Code Quiz - test your knowledge!</h1>
   </header>
-    
-
   
   <main class="page-content" id="page-content">
 
     <div class="start-quiz-setup" id="start-quiz-id">
-      <p>Ready to test your knowledge!  Let's see what you know!  How many questions can you answer before time runs out?  Keep in mind that incorrect guesses will cost you 10 seconds.  Will your initials join the list of winners?</p>
-      <button class="btn" id="start-quiz" type="submit">Start Quiz</button>
+      <p>Are you ready to test your knowledge!  Let's see what you know!  How many questions can you answer before time runs out?  Keep in mind that incorrect guesses will cost you 10 seconds.  Will your initials join the list of winners?</p>
+      <button class="btn" id="start-quiz-btn" type="submit">Start Quiz</button>
+    </div>
 
+    <div id="quiz-questions-id" class="hide answers">
+      <h2 id="message"></h2>
+      <div class="choices" id="answer-choices"></div>
     </div>
    
 
 
-    <!---- quizs To Do -->
+    <!---- To Do section -->
     <section class="quiz-list-wrapper">
       <h2 class="list-title">quizs To Do</h2>
       <ul class="quiz-list" id="quizs-to-do"></ul>
@@ -36,6 +38,7 @@
     &copy;2022 by Jennifer Byrnes
   </footer>
   
+  <script src="./assets/js/questions.js"></script>
   <script src="./assets/js/script.js"></script>
 
 </body>
