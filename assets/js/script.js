@@ -4,7 +4,7 @@
 var formEl = document.querySelector("#quiz-form");
 var quizQuestionEl = document.querySelector("#quiz-question");
 
-// This CAN HOLD ANSWER CHOICES!!!
+// This is the class of the "main" html
 var pageContentEl = document.querySelector("#page-content");
 
 // This CAN HOLD ANSWER CHOICES!!!
