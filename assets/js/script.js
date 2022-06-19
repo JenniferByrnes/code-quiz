@@ -1,4 +1,9 @@
-
+/* 
+display question
+display answers
+display button to submit and get next question
+score it
+*/
 
 // Not sure that these are needed....
 var formEl = document.querySelector("#quiz-form");
@@ -11,8 +16,6 @@ var pageContentEl = document.querySelector("#page-content");
 var answerChoicesEl = document.querySelector("#answer-choices");
 var i=0;
 
-// Good variables from here.
-
 var startButton = document.getElementById("start-quiz-btn");
 var choices = document.getElementById("choices");
 
@@ -20,10 +23,15 @@ var choices = document.getElementById("choices");
 function startQuiz() {
   console.log("starting quiz");
 
-  //Make HTML startElementForm - jkb
+  //Make element of starting HTML
   var quizStartEl = document.getElementById("start-quiz-id");
 
   quizStartEl.setAttribute("class", "hide");
+
+  //This removes the "hide" class so that it will display
+  var quizQuestionPageEl = document.getElementById("quiz-list-wrapper");
+  quizQuestionPageEl.setAttribute("class", "answers list-title");
+
   displayQuestions();
 } // end startButton
 
@@ -31,7 +39,15 @@ startButton.onclick=startQuiz;
 
 // This uses a forEach method to cycle through answer choices
 function displayQuestions () {
+  
   var currentQuestion =  questions[i]
+
+  //Display the question
+  var messageEl = document.getElementById("message");
+  messageEl.setAttribute("class", "answers list-title");
+
+  messageEl.innerHTML = currentQuestion.message;
+
   console.log("in displayQuestions");
   console.log(currentQuestion);
   console.log("starting foreach loop");
@@ -42,10 +58,11 @@ function displayQuestions () {
     var choiceAnswer = document.createElement("button");
     choiceAnswer.setAttribute("class", "choiceIndex");
     choiceAnswer.setAttribute("value", choiceIndex);
-    choiceAnswer.textContent= i + 1 + choiceIndex;
+    choiceAnswer.textContent= choiceIndex + 1;
 
     console.log("choiceAnswer=",choiceAnswer);
+    console.log("choices[]=",questions[i].choices[choiceIndex]);
 
-    answerChoicesEl.appendChild(choiceAnswer);
+  answerChoicesEl.appendChild(choiceAnswer);
   });
 }

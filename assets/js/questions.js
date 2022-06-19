@@ -11,5 +11,5 @@ var questions = [
   }
 ]
 
-var ChoiceCounter = "";
+var ChoiceValue = "";
 
