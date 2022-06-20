@@ -1,15 +1,16 @@
 var questions = [
   {
     message: "What is your favorite color",
-    choices: ["blue", "red", "green", "white"],
-    correctAnswer: "blue"
+    choices: ["yesblue", "red", "green", "white"],
+    correctAnswer: "yesblue"
   },
   {
     message: "What is your favorite pet",
-    choices: ["bird", "cat", "dog", "hampster"],
-    correctAnswer: "dog"
+    choices: ["bird", "cat", "yesdog", "hampster"],
+    correctAnswer: "yesdog"
   }
 ]
 
-var ChoiceValue = "";
+// var ChoiceValue = "";
+
 

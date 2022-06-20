@@ -10,11 +10,14 @@ var pageContentEl = document.querySelector("#page-content");
 // This CAN HOLD ANSWER CHOICES!!!
 const answerButtonsEl = document.getElementById("answer-buttons");
 // This one didn't work - wasnt used
-// var choiseAnswersEL = document.getElementById("choices");
+// var choiceAnswersEL = document.getElementById("choices");
+
+const questionGradeEl = document.getElementById("question-grade");
 
 // This index might go better elsewhere.....
 var qIndex=0;
 var currentQuestion;
+var playerScore = 0;
 
 // Buttons that will be hidden or revealed in game
 var startButtonEl = document.getElementById("start-quiz-btn");
@@ -42,7 +45,11 @@ nextButtonEl.onclick=nextQuestion;
 
 function nextQuestion() {
   resetForm();
-  displayQuestions();
+  if ( qIndex < questions.length ) {
+    displayQuestions();
+  } else {
+    console.log("outof quesitons - end game processing");
+  }
   qIndex++;
 }
 // This uses a forEach method to cycle through answer choices
@@ -71,14 +78,15 @@ function displayQuestions () {
     choiceAnswerBtn.innerText = currentQuestion.choices[choiceIndex];
     choiceAnswerBtn.classList.add("btn");
 
-    console.log("choiceAnswerBtn=",choiceAnswerBtn);
     choiceAnswerBtn.addEventListener("click", selectAnswer)
 
     answerButtonsEl.appendChild(choiceAnswerBtn);
   });
 }
-
+// Clear form for next question
 function resetForm() {
+
+  questionGradeEl.innerText = "";
   console.log("nextButtonEl= ", nextButtonEl);
   console.log("answerButtonsEl= ", answerButtonsEl);
   
@@ -91,11 +99,15 @@ function resetForm() {
 // When answer is selected, if correct - add to score, else deduct from time
 function selectAnswer(e) {
   const selectedButton = e.target;
-  if (selectedButton.innerHTML == currentQuestion.correctAnswer) {
 
-    console.log("Yes! your score goes up!");
-  } else {
-    console.log("Oops!  you lose time!");
+  if (selectedButton.innerHTML == currentQuestion.correctAnswer) {
+    playerScore = playerScore + 10;
+      // Tell player that they are right
+    questionGradeEl.innerText = "Congrats - you got that right!";
+  } 
+  else {
+    // Tell player that they are wrong
+    questionGradeEl.innerText = "Better luck next time...";
   }
   nextButtonEl.classList.remove('hide');
 }
