@@ -6,7 +6,7 @@ var questions = [
   },
   {
     message: "What is your favorite pet",
-    choices: ["dog", "cat", "bird", "hampster"],
+    choices: ["bird", "cat", "dog", "hampster"],
     correctAnswer: "dog"
   }
 ]
