@@ -5,7 +5,7 @@ display button to submit and get next question
 score it
 */
 
-// Not sure that these are needed....
+/* This variable is for the endgame */
 var formEl = document.querySelector("#quiz-form");
 var quizQuestionEl = document.querySelector("#quiz-question");
 
@@ -44,7 +44,8 @@ function displayQuestions () {
 
   //Display the question
   var messageEl = document.getElementById("message");
-  messageEl.setAttribute("class", "answers list-title");
+  //messageEl.setAttribute("class", "answers list-title");
+  messageEl.classlist.remove('hide');
 
   messageEl.innerHTML = currentQuestion.message;
 
@@ -65,4 +66,8 @@ function displayQuestions () {
 
   answerChoicesEl.appendChild(choiceAnswer);
   });
+}
+
+function selectAnswer() {
+
 }
