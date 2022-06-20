@@ -6,6 +6,7 @@ var formEl = document.querySelector("#quiz-form");
 
 // This is the class of the "main" html
 var pageContentEl = document.querySelector("#page-content");
+var quizQuestionPageEl = document.getElementById("quiz-list-wrapper");
 
 // This CAN HOLD ANSWER CHOICES!!!
 const answerButtonsEl = document.getElementById("answer-buttons");
@@ -34,7 +35,7 @@ function startQuiz() {
   quizStartEl.setAttribute("class", "hide");
 
   //This removes the "hide" class so that it will display
-  var quizQuestionPageEl = document.getElementById("quiz-list-wrapper");
+  
   quizQuestionPageEl.setAttribute("class", "answers list-title");
 
   nextQuestion();
@@ -49,6 +50,8 @@ function nextQuestion() {
     displayQuestions();
   } else {
     console.log("outof quesitons - end game processing");
+    quizQuestionPageEl.setAttribute("class", "hide answers list-title");
+    endGame();
   }
   qIndex++;
 }
