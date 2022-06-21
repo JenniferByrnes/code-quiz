@@ -17,14 +17,19 @@
   
   <main class="page-content" id="page-content">
 
+    <div>
+      <button class="btn" id="view-score" type="submit">View High Scores</button>
+      <ul class="hide list-title" id="display-scores"></ul>
+    </div>
     <div class="start-quiz-setup" id="start-quiz-id">
       <p>Are you ready to test your knowledge!  Let's see what you know!  How many questions can you answer before time runs out?  Keep in mind that incorrect guesses will cost you 10 seconds.  Will your initials join the list of winners?</p>
       <button class="btn" id="start-quiz-btn" type="submit">Start Quiz</button>
     </div>
 
     <!-- holds one question and answer set -->
+
     <div id="quiz-list-wrapper" class="hide answers list-title">Title of div</h2>>
-   
+      
           <!-- holds question -->
       <h2 id="message">message to be replaced in js</h2>
 
@@ -48,17 +53,15 @@
       <div class="form-group">
         <button class="btn" id="save-score" type="submit">Save Score</button>
       </div>
-      <div class="form-group">
-        <button class="btn" id="view-score" type="submit">View High Scores</button>
       </div>
     </form>
 
   </main>
-  <footer>
-    &copy;2022 by Jennifer Byrnes
-  </footer>
-  
+
 </body>
+<footer>
+  &copy;2022 by Jennifer Byrnes
+</footer>
 </html>
   <script src="./assets/js/questions.js"></script>
   <script src="./assets/js/script.js"></script>

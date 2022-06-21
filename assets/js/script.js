@@ -35,7 +35,6 @@ function startQuiz() {
   quizStartEl.setAttribute("class", "hide");
 
   //This removes the "hide" class so that it will display
-  
   quizQuestionPageEl.setAttribute("class", "answers list-title");
 
   nextQuestion();
