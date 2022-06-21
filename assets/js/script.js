@@ -72,7 +72,7 @@ function displayQuestions () {
 
   // choiceValues - doesn't seem to matter - what it is?
   // ************ FOREACH LOOP ****************//
-  currentQuestion.choices.forEach(function(choiceValues, choiceIndex){
+  currentQuestion.choices.forEach(function(choiceValues, choiceIndex) {
  
     // Create button for answer choices
     const choiceAnswerBtn = document.createElement("button");

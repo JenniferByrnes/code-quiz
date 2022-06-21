@@ -21,6 +21,7 @@ var endGame = function() {
 var viewHighScoreClick = function (event) {
   event.preventDefault();
   console.log("in function viewHighScores()");
+  renderHighScores;
 };  // end viewHighScoreClick function
 
 // Botton was clicked. This will save the winners initials to local storage in an array.
@@ -70,11 +71,25 @@ var resetGame = function() {
     qIndex=0;
 }
 
+
+
+//This one needs work - also - combine with viewHighScores?
 var renderHighScores = function() {
-  // for loop through HS
-  // create li elements
-  //innerHTML
-  // append to ul (by the view test button)
+
+  var viewScoresEl = document.getElementById("view-score");
+  viewScoresEl.setAttribute("class", "list-title");
+
+  // ************ FOREACH LOOP ****************//
+  highScoresArray.forEach(function(highScoresFunction){
+ 
+    // Create button for answer choices
+    const highScoresDisplay = document.createElement("button");
+    highScoresDisplay.innerText = highScoresArray.name + highScoresArray.score;
+    highScoresDisplay.classList.add("btn");
+    console.log("highScoresDisplay=", highScoresDisplay)
+
+    viewScoresEl.appendChild(highScoresDisplay);
+  });
 }
 
 // **Save** high score - button clicked
