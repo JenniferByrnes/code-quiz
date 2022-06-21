@@ -1,18 +1,9 @@
-
-/* This variable is for the endgame */
-var formEl = document.querySelector("#quiz-form");
-
-//var quizQuestionEl = document.querySelector("#quiz-question");
-
 // This is the class of the "main" html
 var pageContentEl = document.querySelector("#page-content");
 var quizQuestionPageEl = document.getElementById("quiz-list-wrapper");
 
 // This CAN HOLD ANSWER CHOICES!!!
 const answerButtonsEl = document.getElementById("answer-buttons");
-// This one didn't work - wasnt used
-// var choiceAnswersEL = document.getElementById("choices");
-
 const questionGradeEl = document.getElementById("question-grade");
 
 // This index might go better elsewhere.....
@@ -23,19 +14,24 @@ var playerScore = 0;
 // Buttons that will be hidden or revealed in game
 var startButtonEl = document.getElementById("start-quiz-btn");
 var nextButtonEl = document.getElementById("next-btn");
+var viewDivEl = document.getElementById("view-high-score-div");
 
 
 // OnClick to startQuiz function - Hide button and get questions
 function startQuiz() {
   console.log("starting quiz");
+  console.log("viewScoresEl=", viewScoresEl);
 
   //Make element of starting HTML
   var quizStartEl = document.getElementById("start-quiz-id");
 
   quizStartEl.setAttribute("class", "hide");
 
-  //This removes the "hide" class so that it will display
+  //This removes the "hide" class so that it will display and adds it to View High Scores in case this is a replay
   quizQuestionPageEl.setAttribute("class", "answers list-title");
+
+  viewDivEl.setAttribute("class", "hide");
+  clearHighScores();
 
   nextQuestion();
 } // end startQuiz
