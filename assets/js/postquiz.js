@@ -26,6 +26,7 @@ var viewHighScoreClick = function (event) {
   event.preventDefault();
   console.log("in function viewHighScores()");
   renderHighScores();
+  //if empty - need message
 };  // end viewHighScoreClick function
 
 // Botton was clicked. This will save the winners initials to local storage in an array.
@@ -94,9 +95,7 @@ function clearHighScores() {
 
 
 //This one works! - also - combine with viewHighScores?
-// needs formatting and hide/unhide
-// should be called after score is saved, too.
-//need message for no high scores.
+// needs formatting
 var renderHighScores = function() {
 
   console.log("in function renderHighScores()");
@@ -117,6 +116,13 @@ var renderHighScores = function() {
 
     viewScoresEl.appendChild(highScoresDisplay);
   });
+
+  if (!arrayIndex) {
+    const highScoresDisplay = document.createElement("button");
+    highScoresDisplay.innerText = "There are no current high scores";
+    highScoresDisplay.classList.add("btn");
+    viewScoresEl.appendChild(highScoresDisplay);
+  }
   console.log("viewScoresEl=", viewScoresEl);
 }
 
