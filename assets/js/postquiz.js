@@ -1,5 +1,6 @@
 var endFormEl = document.getElementById("end-form");
-var viewScoresEl = document.getElementById("view-btn");
+var viewScoresEl = document.getElementById("display-scores");
+var viewBtnEl = document.getElementById("view-btn");
 console.log("endFormEl=", endFormEl);
 console.log("viewScoresEl=", viewScoresEl);
 //var quizQuestionEl = document.querySelector("#quiz-question");
@@ -15,7 +16,7 @@ var endGame = function() {
   // Hide quiz, show end game form
   endFormEl.setAttribute("class", "");
   viewDivEl.classList.remove('hide');
-  viewScoresEl.innerText = "VIEW HIGH SCORES";
+  viewBtnEl.innerText = "VIEW HIGH SCORES";
 
 };  // end endGame
 
@@ -25,8 +26,8 @@ var endGame = function() {
 var viewHighScoreClick = function (event) {
   event.preventDefault();
   console.log("in function viewHighScores()");
+  clearHighScores();
   renderHighScores();
-  //if empty - need message
 };  // end viewHighScoreClick function
 
 // Botton was clicked. This will save the winners initials to local storage in an array.
@@ -62,13 +63,14 @@ var saveButtonClicked = function (event) {
   //saveToLocal(highScoresArray);
   localStorage.setItem("highScore", JSON.stringify(highScoresArray));
 
+  clearHighScores();
   renderHighScores();
-
   resetGame();
 
 }; //end saveButtonClicked function
 
 var resetGame = function() {
+  console.log("in resetGame function");
     //This adds back the "hide" class so that it will display
     quizQuestionPageEl.setAttribute("class", "hide answers list-title");
     endFormEl.setAttribute("class", "hide");
@@ -79,31 +81,30 @@ var resetGame = function() {
     qIndex=0;
   
     playerScore = 0;
-    clearHighScores();
-    viewScoresEl.innerText = "VIEW HIGH SCORES";
+    //clearHighScores();
+    viewBtnEl.innerText = "VIEW HIGH SCORES";
 }
 // Clear high scores
 function clearHighScores() {
 
   console.log("in clearHighScores")
-  console.log("viewScoresEl=", viewScoresEl);
 
   while (viewScoresEl.firstChild) {
     viewScoresEl.removeChild(viewScoresEl.firstChild);
   }
 }
 
-
-//This one works! - also - combine with viewHighScores?
-// needs formatting
+// Displays high scores or message that none exist
 var renderHighScores = function() {
 
   console.log("in function renderHighScores()");
   console.log("viewScoresEl=", viewScoresEl);
 
   // Unhide view high score display
-  viewScoresEl.setAttribute("class", "btn");
-  var arrayIndex = 0;
+  //viewScoresEl.setAttribute("class", "btn");
+  viewScoresEl.classList.remove('hide');
+  var noHighScores = true;
+  console.log("***viewScoresEl=***", viewScoresEl);
 
   // ************ FOREACH LOOP ****************//
   highScoresArray.forEach(function(choiceValues, arrayIndex) {
@@ -114,14 +115,18 @@ var renderHighScores = function() {
     highScoresDisplay.classList.add("btn");
     console.log("highScoresDisplay=", highScoresDisplay)
 
+    noHighScores = false;
     viewScoresEl.appendChild(highScoresDisplay);
   });
 
-  if (!arrayIndex) {
-    const highScoresDisplay = document.createElement("button");
-    highScoresDisplay.innerText = "There are no current high scores";
-    highScoresDisplay.classList.add("btn");
-    viewScoresEl.appendChild(highScoresDisplay);
+  console.log("noHighScores=", noHighScores)
+
+  if (noHighScores) {
+    //const highScoresDisplay = document.createElement("button");
+    //highScoresDisplay.innerText = "There are no current high scores";
+    //highScoresDisplay.classList.add("btn");
+    //viewScoresEl.appendChild(highScoresDisplay);
+    window.alert("There are no current high scores");
   }
   console.log("viewScoresEl=", viewScoresEl);
 }
@@ -130,4 +135,4 @@ var renderHighScores = function() {
 endFormEl.querySelector("#save-score").addEventListener("click", saveButtonClicked);
 
 // **View** high score - button clicked
-viewScoresEl.addEventListener("click", viewHighScoreClick);
+viewBtnEl.addEventListener("click", viewHighScoreClick);
