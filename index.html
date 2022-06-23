@@ -17,32 +17,33 @@
   
   <main class="page-content" id="page-content">
 
+    
     <div id="view-high-score-div">
-      <button class="btn" id="view-btn" type="submit">View High Scores</button>
       <ul class="list-title" id="display-scores"></ul>
+      <button class="btn" id="view-btn" type="submit">View High Scores</button>
+      
+    
     </div>
     <div class="start-quiz-setup" id="start-quiz-id">
-      <p>Are you ready to test your knowledge!  Let's see what you know!  How many questions can you answer before time runs out?  Keep in mind that incorrect guesses will cost you 10 seconds.  Will your initials join the list of winners?</p>
+      <p id="start-text">Are you ready to test your knowledge!  Let's see what you know!  How many questions can you answer before time runs out?  Keep in mind that incorrect guesses will cost you 10 seconds.  Will your initials join the list of winners?</p>
       <button class="btn" id="start-quiz-btn" type="submit">Start Quiz</button>
     </div>
 
     <!-- holds one question and answer set -->
 
-    <div id="quiz-list-wrapper" class="hide answers list-title">Title of div</h2>>
+    <div id="quiz-list-wrapper" class="hide answers list-title">
       
           <!-- holds question -->
       <h2 id="message">message to be replaced in js</h2>
 
           <!-- holds answer set -->
       <div class="quiz-list answer-buttons" id="quizs-to-do">
-        <ul class="choices list-title" id="answer-buttons">
-          <button class="btn">Answer 1</button>
-          <button class="btn">Answer 2</button>
-          <button class="btn">Answer 3</button>
-          <button class="btn">Answer 4</button>
-        </ul>
+        <div>
+          <ul class="choices list-title" id="answer-buttons">
+          </ul>
+          <button class="btn" id="next-btn" type="submit">Next</button>
+        </div>
         <div id="question-grade"></div>
-        <button class="btn" id="next-btn" type="submit">Next</button>
       </div>
     </div>
   
@@ -50,7 +51,7 @@
       <div class="form-group">
         <input type="text" name="winner-name" class="text-input" placeholder="Enter your initials." />
       </div>
-      <div class="form-group">
+      <div>
         <button class="btn" id="save-score" type="submit">Save Score</button>
       </div>
       </div>

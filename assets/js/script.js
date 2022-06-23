@@ -44,7 +44,7 @@ function nextQuestion() {
   if ( qIndex < questions.length ) {
     displayQuestions();
   } else {
-    console.log("outof quesitons - end game processing");
+    console.log("outof questions - end game processing");
     quizQuestionPageEl.setAttribute("class", "hide answers list-title");
     endGame();
   }

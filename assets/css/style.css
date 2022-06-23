@@ -30,52 +30,9 @@ header {
   border-bottom: 5px solid var(--primary);
 }
 
-header p {
-  color: var(--tertiary);
-  margin: 5px 0 20px;
-  font-size: 2rem;
-}
-
 p {
   font-size: 2.6rem;
   color: var(--secondary);
-}
-/*  doesn't do much
-.start-quiz-setup {
-  display: flex;
-  align-items: flex-end;
-  flex-wrap: wrap;
-}
-*/
-/* form goes with endgame code */
-form {
-  display: flex;
-  align-items: flex-end;
-  flex-wrap: wrap;
-}
-
-form input {
-  outline: none;
-  border: none;
-  padding: 12px;
-  width: 100%;
-  font-size: 2.2rem;
-  border: 2px solid var(--grey);
-  border-radius: 12px;
-}
-
-form .form-group {
-  margin: 10px 6px 10px 0;
-  flex: 1;
-}
-
-footer {
-  width: 100%;
-  background: var(--secondary);
-  color: var(--tertiary);
-  font-size: 1.4rem;
-  padding: 100px;
-  border-top: 5px solid var(--primary);
 }
 
 .page-title {
@@ -83,31 +40,43 @@ footer {
   margin-bottom: 5px;
   margin-top: 0;
   font-size: 4.5rem;
+  justify-content: center;
 }
 
+/* This is our main section */
 .page-content {
   flex: 1;
   display: flex;
   flex-wrap: wrap;
-  justify-content: center;
+  flex-direction: column;
   margin: 25px auto;
   width: 95%;
 }
 
-.quiz-list-wrapper {
-  display: flex;
-  flex: 1;
+/* this wont work with "hide" 
+#quiz-list-wrapper {
   margin: 0 20px 20px;
   max-width: 80%;
-  border-color: yellow;
   box-shadow: 0 0 10px 2px;
-  border: 5px;
+  border: 2px solid var(--grey);
+  padding: 10px;
+}
+*/
+
+/***************************
+box-shadow: 0 0 10px 2px;
+border: 2px solid var(--grey);
+/***************************
+/* Need to figure out the hide piece 
+otherwise a tiny empty box is displayed */
+#display-scores {
+  margin: 0 20px 20px;
+  max-width: 80%;
   padding: 10px;
 }
 
+
 #quizs-to-do {
-  display: grid;
-  grid-template-columns: repeat(2, auto);
   gap: 10px;
   margin: 20px 0;
   list-style: none;
@@ -121,32 +90,15 @@ footer {
   color: var(--secondary);
   font-size: 2.6rem;
 }
-
-.quiz-item {
-  color: var(--grey);
-  padding: 15px 15px;
-  border: 2px solid var(--grey);
-  background: var(--tertiary);
-  border-radius: 12px;
-  margin-bottom: 20px;
-}
-
-.quiz-name {
-  margin: 0;
-  font-size: 1.8rem;
-}
-
-.quiz-type {
-  color: var(--secondary);
-  font-size: 1.55rem;
-}
-.quiz-actions {
+/* ul that holds li answer choices
+.choices {
   display: flex;
   flex-wrap: wrap;
   align-items: center;
   margin: 10px 0 5px 0;
   justify-content: space-between;
 }
+ */
 
 .btn {
   outline: none;
@@ -161,10 +113,54 @@ footer {
   box-shadow: 0 3px var(--grey);
 }
 
-#start-quiz-btn #next-quiz-btn {
+/* this doesn't appear to work 
+the id's are correct, but they don't show in the 
+code inspector 
+#start-quiz-btn #next-btn {
   font-size: 1.5rem;
   font-weight: bold;
   padding: 10px 20px;
+  width: 50%;
+  margin: auto;
+}
+*/ 
+
+#view-high-score-div {
+  display: flex;
+  justify-content: right;
+  align-items: center;
+}
+
+/* form goes with endgame code */
+form {
+  display: flex;
+  align-items: flex-end;
+  flex-wrap: wrap;
+}
+
+form input {
+  outline: none;
+  border: none;
+  padding: 12px;
+  width: 40%;
+  font-size: 2.2rem;
+  border: 2px solid var(--grey);
+  border-radius: 12px;
+}
+
+form .form-group {
+  margin: 10px 6px 10px 0;
+  flex: 1 100%;
+}
+
+
+footer {
+  width: 100%;
+  background: var(--secondary);
+  color: var(--tertiary);
+  font-size: 1.4rem;
+  padding: 10px;
+  border-top: 5px solid var(--primary);
 }
 
 .hide {
@@ -182,9 +178,7 @@ footer {
 }
 
 @media screen and (max-width: 980px) {
-  form .form-group {
-    flex: 1 100%;
-  }
+
 
   form .form-group button {
     width: 100%;
@@ -194,4 +188,16 @@ footer {
     flex-basis: 100%;
   }
 
+  .page-title {
+    margin-bottom: 0;
+    font-size: 2.5rem;
+  }
+
+}
+
+@media screen and (max-width: 550px) {
+
+  form input {
+    font-size: 1.5rem;
+  }
 }
