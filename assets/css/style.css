@@ -115,7 +115,7 @@ otherwise a tiny empty box is displayed */
 
 /* this doesn't appear to work 
 the id's are correct, but they don't show in the 
-code inspector 
+code inspector.  Hiding issue???
 #start-quiz-btn #next-btn {
   font-size: 1.5rem;
   font-weight: bold;
