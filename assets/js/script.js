@@ -2,7 +2,7 @@
 var pageContentEl = document.querySelector("#page-content");
 var quizQuestionPageEl = document.getElementById("quiz-list-wrapper");
 
-// This CAN HOLD ANSWER CHOICES!!!
+// This answerButtonEl holds answer choices
 const answerButtonsEl = document.getElementById("answer-buttons");
 const questionGradeEl = document.getElementById("question-grade");
 
@@ -14,6 +14,8 @@ var playerScore = 0;
 // Buttons that will be hidden or revealed in game
 var startButtonEl = document.getElementById("start-quiz-btn");
 var nextButtonEl = document.getElementById("next-btn");
+
+// The view div element is not needed during the quiz
 var viewDivEl = document.getElementById("view-high-score-div");
 
 
@@ -22,15 +24,16 @@ function startQuiz() {
   console.log("starting quiz");
   console.log("viewScoresEl=", viewScoresEl);
 
-  //Make element of starting HTML
-  var quizStartEl = document.getElementById("start-quiz-id");
-
-  quizStartEl.setAttribute("class", "hide");
+  //Make element of starting HTML and hide it.
+  // This is the 1st welcome page - it will not show again
+  var startQuizDivEl = document.getElementById("start-quiz-id");
+  startQuizDivEl.setAttribute("class", "hide");
 
   //This removes the "hide" class so that it will display and adds it to View High Scores in case this is a replay
   quizQuestionPageEl.setAttribute("class", "answers list-title");
 
-  viewDivEl.setAttribute("class", "hide");
+  /*viewDivEl.setAttribute("class", "hide");*/
+  viewDivEl.classList.add('hide');
   clearHighScores();
 
   nextQuestion();
@@ -45,7 +48,8 @@ function nextQuestion() {
     displayQuestions();
   } else {
     console.log("outof questions - end game processing");
-    quizQuestionPageEl.setAttribute("class", "hide answers list-title");
+    /*quizQuestionPageEl.setAttribute("class", "hide answers list-title");*/
+    quizQuestionPageEl.classList.add('hide');
     endGame();
   }
   qIndex++;
@@ -57,8 +61,8 @@ function displayQuestions () {
 
   //Display the question
   var messageEl = document.getElementById("message");
-  messageEl.setAttribute("class", "answers list-title");
-  //messageEl.classlist.remove('hide'); Did not work.
+  /* messageEl.setAttribute("class", "answers list-title");*/
+  messageEl.classList.remove('hide');
 
   messageEl.innerHTML = currentQuestion.message;
 
@@ -66,10 +70,9 @@ function displayQuestions () {
   console.log(currentQuestion);
   console.log("starting foreach loop");
 
-  // choiceValues - doesn't seem to matter - what it is?
   // ************ FOREACH LOOP ****************//
-  currentQuestion.choices.forEach(function(choiceValues, choiceIndex) {
- 
+  currentQuestion.choices.forEach(function(placeHolder, choiceIndex) {
+
     // Create button for answer choices
     const choiceAnswerBtn = document.createElement("button");
     choiceAnswerBtn.textContent= choiceIndex + 1;
