@@ -2,6 +2,9 @@
 var pageContentEl = document.querySelector("#page-content");
 var quizQuestionPageEl = document.getElementById("quiz-list-wrapper");
 
+// This is an h2 element from html
+var timerEl = document.getElementById('countdown');
+
 // This answerButtonEl holds answer choices
 const answerButtonsEl = document.getElementById("answer-buttons");
 const questionGradeEl = document.getElementById("question-grade");
@@ -16,7 +19,7 @@ var startButtonEl = document.getElementById("start-quiz-btn");
 var nextButtonEl = document.getElementById("next-btn");
 
 // OnClick to startQuiz function - Hide button and get questions
-function startQuiz() {
+var startQuiz = function() {
   console.log("starting quiz");
 
   //Make element of starting HTML and hide it.
@@ -53,7 +56,7 @@ function nextQuestion() {
 }
 
 // This displays the question and uses a forEach method to display answer choices
-function displayQuestions () {
+var displayQuestions = function() {
 
   currentQuestion =  questions[qIndex]
 
@@ -63,7 +66,7 @@ function displayQuestions () {
   messageEl.innerHTML = currentQuestion.message;
 
 
-  // ************ FOREACH LOOP ****************//
+  // create buttons for answer choices and display them
   currentQuestion.choices.forEach(function(placeHolder, choiceIndex) {
 
     // Create buttons for answer choices
@@ -78,7 +81,7 @@ function displayQuestions () {
   });
 }
 // Clear form for next question
-function clearQuestion() {
+var clearQuestion = function() {
 
   // Set displayed text to blank
   questionGradeEl.innerText = "";
@@ -93,7 +96,7 @@ function clearQuestion() {
 }
 
 // When answer is selected, if correct - add to score, else deduct from time
-function selectAnswer(e) {
+var selectAnswer = function(e) {
   const selectedButton = e.target;
 
   if (selectedButton.innerHTML == currentQuestion.correctAnswer) {
@@ -108,3 +111,53 @@ function selectAnswer(e) {
   }
   nextButtonEl.classList.remove('hide');
 }
+
+function countdown() {
+  // This runs for a total of 5 seconds
+  var timeLeft = 5;
+
+  // TODO: Add a comment describing the functionality of the setInterval() method:
+  // runs stuff for a set interval of time - one second
+  var timeInterval = setInterval(function () {
+    // TODO: Add comments describing the functionality of the `if` statement:
+    // We have time left - display it
+    if (timeLeft > 1) {
+      timerEl.textContent = timeLeft + ' seconds remaining';
+      timeLeft--;
+    } // TODO: Add comments describing the functionality of the `else if` statement:
+    //  changing the text for one single second
+    else if (timeLeft === 1) {
+      timerEl.textContent = timeLeft + ' second remaining';
+      timeLeft--;
+    } // TODO: Add comments describing the functionality of the `else` statement:
+    // out of time - stop the timer and clear it out
+    else {
+      timerEl.textContent = '';
+      clearInterval(timeInterval);
+      displayMessage();
+    }
+    // This runs every second on the second
+  }, 1000);
+}
+
+// Displays the message one word at a time
+function displayMessage() {
+  var wordCount = 0;
+
+  // Uses the `setInterval()` method to call a function to be executed every 1000 milliseconds
+  var msgInterval = setInterval(function () {
+    // If there are no more words left in the message
+    // word count started at 0 and moves through.
+    if (words[wordCount] === undefined) {
+      // Use `clearInterval()` to stop the timer
+      clearInterval(msgInterval);
+    } else {
+      // Display one word of the message in the main element from the html
+      mainEl.textContent = words[wordCount];
+      wordCount++;
+    }
+    // runs every second on the second.
+  }, 1000);
+}
+
+countdown();

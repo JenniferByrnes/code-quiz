@@ -16,8 +16,8 @@ var endGame = function() {
   console.log("in postQuiz function");
   // Hide quiz, show end game form
   endFormEl.setAttribute("class", "");
-  // do nothing code - remove? - no keep it!!!
-  viewDivEl.classList.remove('hide');
+  // do nothing code - remove? - no keep it!!! - nevermind - remove...
+  // viewDivEl.classList.remove('hide');
 };  // end endGame
 
 //Button clicked to view high scores

@@ -53,6 +53,14 @@ p {
   width: 95%;
 }
 
+/* for the timer */
+.container {
+  margin: auto;
+  width: 100%;
+  height: 100px;
+  text-align: center;
+}
+
 /* this wont work with "hide" 
 #quiz-list-wrapper {
   margin: 0 20px 20px;
