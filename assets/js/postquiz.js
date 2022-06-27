@@ -3,7 +3,8 @@ var endFormEl = document.getElementById("end-form");
 var restartQuizEl = document.getElementById("start-text");
 var restartText = "Would you like to play again?";
 
-// Button and List to view high scores
+// Div, Button and List to view high scores
+var viewDivEl = document.getElementById("view-high-score-div");
 var viewScoresEl = document.getElementById("display-scores");
 var viewBtnEl = document.getElementById("view-btn");
 
@@ -31,7 +32,6 @@ var viewHighScoreClick = function (event) {
 // Player clicked "Save Score" to get here
 var saveButtonClicked = function (event) {
   console.log("in saveButtonclicked function");
-  console.log("viewScoresEl=", viewScoresEl);
   event.preventDefault();
 
   // Winner must type initials
@@ -54,8 +54,6 @@ var saveButtonClicked = function (event) {
 
   // Add new score to array
   highScoresArray.push(winnerObj);
-  console.log("in saveButtonClicked function");
-  console.log("highScoresArray = ", highScoresArray);
   
   //saveToLocal(highScoresArray);
   localStorage.setItem("highScore", JSON.stringify(highScoresArray));
@@ -68,26 +66,27 @@ var saveButtonClicked = function (event) {
 
 var resetGame = function() {
   console.log("in resetGame function");
+
     //This hides the quiz and save score sections
     quizQuestionPageEl.setAttribute("class", "hide answers list-title");
     endFormEl.setAttribute("class", "hide");
 
-    //This reveals the Start Quiz button and text
+    //This reveals the Start Quiz button and restart text
     document.getElementById("start-text").innerHTML = restartText;
     var quizStartEl = document.getElementById("start-quiz-id");
     quizStartEl.setAttribute("class", "start-quiz-id");
     //document.getElementById("start-quiz-id").class = "";
     //viewDivEl.classList.remove('hide');
 
+    // Reset question counter and player score
     qIndex=0;
     playerScore = 0;
-    
 }
-// Clear high scores
-function clearHighScores() {
 
-  console.log("in clearHighScores")
+// Clear high score display
+var clearHighScores =  function() {
 
+  // Remove all high score buttons
   while (viewScoresEl.firstChild) {
     viewScoresEl.removeChild(viewScoresEl.firstChild);
   }
@@ -95,9 +94,6 @@ function clearHighScores() {
 
 // Displays high scores or message that none exist
 var renderHighScores = function() {
-
-  console.log("in function renderHighScores()");
-  console.log("viewScoresEl=", viewScoresEl);
 
   // Unhide view high score display
   viewScoresEl.classList.remove('hide');
@@ -110,18 +106,14 @@ var renderHighScores = function() {
     const highScoresDisplay = document.createElement("button");
     highScoresDisplay.innerText = highScoresArray[arrayIndex].name + "    " +  highScoresArray[arrayIndex].score;
     highScoresDisplay.classList.add("btn");
-    console.log("highScoresDisplay=", highScoresDisplay)
 
     noHighScores = false;
     viewScoresEl.appendChild(highScoresDisplay);
   });
 
-  console.log("noHighScores=", noHighScores)
-
   if (noHighScores) {
     window.alert("There are no current high scores");
   }
-  console.log("viewScoresEl=", viewScoresEl);
 }
 
 // **Save** high score - button clicked

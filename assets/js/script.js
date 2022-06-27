@@ -6,7 +6,7 @@ var quizQuestionPageEl = document.getElementById("quiz-list-wrapper");
 const answerButtonsEl = document.getElementById("answer-buttons");
 const questionGradeEl = document.getElementById("question-grade");
 
-// This index might go better elsewhere.....
+// Needed global counters
 var qIndex=0;
 var currentQuestion;
 var playerScore = 0;
@@ -15,83 +15,78 @@ var playerScore = 0;
 var startButtonEl = document.getElementById("start-quiz-btn");
 var nextButtonEl = document.getElementById("next-btn");
 
-// The view div element is not needed during the quiz
-var viewDivEl = document.getElementById("view-high-score-div");
-
-
 // OnClick to startQuiz function - Hide button and get questions
 function startQuiz() {
   console.log("starting quiz");
-  console.log("viewScoresEl=", viewScoresEl);
 
   //Make element of starting HTML and hide it.
-  // This is the 1st welcome page - it will not show again
+  // This is the 1st welcome page - it should not show again
   var startQuizDivEl = document.getElementById("start-quiz-id");
   startQuizDivEl.setAttribute("class", "hide");
 
-  //This removes the "hide" class so that it will display and adds it to View High Scores in case this is a replay
-  quizQuestionPageEl.setAttribute("class", "answers list-title");
+  //This removes the "hide" class so that quiz will display and 
+  quizQuestionPageEl.classList.remove('hide');
 
-  /*viewDivEl.setAttribute("class", "hide");*/
-  viewDivEl.classList.add('hide');
+  // Start the timer and reveal the 1st question.
+  // !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!START TIMER HERE!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
   clearHighScores();
-
   nextQuestion();
 } // end startQuiz
 
 startButtonEl.onclick=startQuiz;
 nextButtonEl.onclick=nextQuestion;
+// !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!! When timer ends - end game !!!!!!!!!!!!!!!!
 
+// If we have another question, display it, otherwise the game is over.
 function nextQuestion() {
-  resetForm();
+  clearQuestion();
+  
   if ( qIndex < questions.length ) {
     displayQuestions();
   } else {
     console.log("outof questions - end game processing");
-    /*quizQuestionPageEl.setAttribute("class", "hide answers list-title");*/
+    
     quizQuestionPageEl.classList.add('hide');
     endGame();
   }
   qIndex++;
 }
-// This uses a forEach method to cycle through answer choices
+
+// This displays the question and uses a forEach method to display answer choices
 function displayQuestions () {
 
   currentQuestion =  questions[qIndex]
 
   //Display the question
   var messageEl = document.getElementById("message");
-  /* messageEl.setAttribute("class", "answers list-title");*/
   messageEl.classList.remove('hide');
-
   messageEl.innerHTML = currentQuestion.message;
 
-  console.log("in displayQuestions");
-  console.log(currentQuestion);
-  console.log("starting foreach loop");
 
   // ************ FOREACH LOOP ****************//
   currentQuestion.choices.forEach(function(placeHolder, choiceIndex) {
 
-    // Create button for answer choices
+    // Create buttons for answer choices
     const choiceAnswerBtn = document.createElement("button");
     choiceAnswerBtn.textContent= choiceIndex + 1;
     choiceAnswerBtn.innerText = currentQuestion.choices[choiceIndex];
     choiceAnswerBtn.classList.add("btn");
-
+    // Add listener for "click"
     choiceAnswerBtn.addEventListener("click", selectAnswer)
-
+    // keep appending choices until done
     answerButtonsEl.appendChild(choiceAnswerBtn);
   });
 }
 // Clear form for next question
-function resetForm() {
+function clearQuestion() {
 
+  // Set displayed text to blank
   questionGradeEl.innerText = "";
-  console.log("nextButtonEl= ", nextButtonEl);
-  console.log("answerButtonsEl= ", answerButtonsEl);
-  
+
+  // Hide the Next button until user answers question
   nextButtonEl.classList.add('hide');
+
+  // Remove all answer choices
   while (answerButtonsEl.firstChild) {
     answerButtonsEl.removeChild(answerButtonsEl.firstChild);
   }
@@ -109,6 +104,7 @@ function selectAnswer(e) {
   else {
     // Tell player that they are wrong
     questionGradeEl.innerText = "Better luck next time...";
+    //!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!! Timer !!!!!!!!!!!!!!!!!!!
   }
   nextButtonEl.classList.remove('hide');
 }
