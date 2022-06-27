@@ -116,31 +116,31 @@ function countdown() {
   // This runs for a total of 5 seconds
   var timeLeft = 5;
 
-  // TODO: Add a comment describing the functionality of the setInterval() method:
-  // runs stuff for a set interval of time - one second
+  // setInterval() runs stuff for a set interval of time - one second
   var timeInterval = setInterval(function () {
-    // TODO: Add comments describing the functionality of the `if` statement:
-    // We have time left - display it
+    // if time left - display it
     if (timeLeft > 1) {
       timerEl.textContent = timeLeft + ' seconds remaining';
       timeLeft--;
-    } // TODO: Add comments describing the functionality of the `else if` statement:
+    } 
     //  changing the text for one single second
     else if (timeLeft === 1) {
       timerEl.textContent = timeLeft + ' second remaining';
       timeLeft--;
-    } // TODO: Add comments describing the functionality of the `else` statement:
+    } 
     // out of time - stop the timer and clear it out
     else {
-      timerEl.textContent = '';
+      timerEl.textContent = "Time's Up";
       clearInterval(timeInterval);
-      displayMessage();
+      /*
+      displayMessage();*/
     }
     // This runs every second on the second
   }, 1000);
 }
 
 // Displays the message one word at a time
+// Most likely - unneeded function
 function displayMessage() {
   var wordCount = 0;
 
@@ -153,7 +153,7 @@ function displayMessage() {
       clearInterval(msgInterval);
     } else {
       // Display one word of the message in the main element from the html
-      mainEl.textContent = words[wordCount];
+      mainEl.textContent = "hello world";
       wordCount++;
     }
     // runs every second on the second.
