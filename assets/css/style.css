@@ -67,8 +67,21 @@ p {
 
 /* for the displayed scores (not the button) */
 #view-high-scores-container {
-  max-width: 75%;
+  display: flex;
+  flex-flow: row wrap;
+  width: 75%;
   padding: 10px;
+}
+/* for the displayed scores (not the button) */
+#high-scores-container {
+  width: 66%;
+  padding: 10px;
+}
+/* for the displayed scores (not the button) */
+#view-button-container {
+  width: 33%;
+  padding: 10px;
+  justify-content: flex-end;
 }
 
 #quizs-to-do {
