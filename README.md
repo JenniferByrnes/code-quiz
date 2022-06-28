@@ -10,7 +10,7 @@ Provides an online coding quiz to test oneself against a timer.  High scores are
 * JavaScript
 
 ## Website
-https://jenniferbyrnes.github.io/portfolio
+https://jenniferbyrnes.github.io/code-quiz
 
 ## Contribution
 Crafted with ❤️ by Jennifer Byrnes
