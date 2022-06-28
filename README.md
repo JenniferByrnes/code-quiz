@@ -17,5 +17,4 @@ Crafted with ❤️ by Jennifer Byrnes
 
 # Screenshot
 
-![Screen Shot 2022-06-05 at 6 57 38 AM](https://user-images.githubusercontent.com/105435313/172047381-9b990cc5-d7f2-46c0-b443-4e2d84d262b1.png)
-
+<img width="928" alt="Screen Shot 2022-06-28 at 8 34 32 AM" src="https://user-images.githubusercontent.com/105435313/176179770-61f0203b-98d3-47de-8df7-de1b89dbe1e1.png">
