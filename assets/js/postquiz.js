@@ -13,11 +13,13 @@ var highScoresArray = JSON.parse(localStorage.getItem("highScore")) || [];
 
 // Allow player to save score
 var endGame = function() {  
-  console.log("in postQuiz function");
+  console.log("in endGame function");
   // Hide quiz, show end game form
+  quizQuestionPageEl.classList.add('hide');
   endFormEl.setAttribute("class", "");
-  // do nothing code - remove? - no keep it!!! - nevermind - remove...
-  // viewDivEl.classList.remove('hide');
+
+  // Stop the timer
+  clearInterval(timeInterval);
 };  // end endGame
 
 //Button clicked to view high scores
@@ -75,8 +77,6 @@ var resetGame = function() {
     document.getElementById("start-text").innerHTML = restartText;
     var quizStartEl = document.getElementById("start-quiz-id");
     quizStartEl.setAttribute("class", "start-quiz-id");
-    //document.getElementById("start-quiz-id").class = "";
-    //viewDivEl.classList.remove('hide');
 
     // Reset question counter and player score
     qIndex=0;

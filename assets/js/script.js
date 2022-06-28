@@ -2,6 +2,10 @@
 var pageContentEl = document.querySelector("#page-content");
 var quizQuestionPageEl = document.getElementById("quiz-list-wrapper");
 
+// Set the countdown timer
+var timeLeft;
+var timeInterval;
+
 // This is an h2 element from html
 var timerEl = document.getElementById('countdown');
 
@@ -30,15 +34,15 @@ var startQuiz = function() {
   //This removes the "hide" class so that quiz will display and 
   quizQuestionPageEl.classList.remove('hide');
 
-  // Start the timer and reveal the 1st question.
-  // !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!START TIMER HERE!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+  // Start the timer (seconds) and reveal the 1st question.
+  timeLeft = 30;
+  countdown()
   clearHighScores();
   nextQuestion();
 } // end startQuiz
 
 startButtonEl.onclick=startQuiz;
 nextButtonEl.onclick=nextQuestion;
-// !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!! When timer ends - end game !!!!!!!!!!!!!!!!
 
 // If we have another question, display it, otherwise the game is over.
 function nextQuestion() {
@@ -46,10 +50,9 @@ function nextQuestion() {
   
   if ( qIndex < questions.length ) {
     displayQuestions();
-  } else {
+  } 
+  else {
     console.log("outof questions - end game processing");
-    
-    quizQuestionPageEl.classList.add('hide');
     endGame();
   }
   qIndex++;
@@ -64,7 +67,6 @@ var displayQuestions = function() {
   var messageEl = document.getElementById("message");
   messageEl.classList.remove('hide');
   messageEl.innerHTML = currentQuestion.message;
-
 
   // create buttons for answer choices and display them
   currentQuestion.choices.forEach(function(placeHolder, choiceIndex) {
@@ -105,19 +107,18 @@ var selectAnswer = function(e) {
     questionGradeEl.innerText = "Congrats - you got that right!";
   } 
   else {
-    // Tell player that they are wrong
+    // Tell player that they are wrong and deduct 10 seconds from their time
     questionGradeEl.innerText = "Better luck next time...";
-    //!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!! Timer !!!!!!!!!!!!!!!!!!!
+    timeLeft = timeLeft - 10;
   }
   nextButtonEl.classList.remove('hide');
 }
 
-function countdown() {
-  // This runs for a total of 5 seconds
-  var timeLeft = 5;
+var countdown = function() {
+  console.log("+++++++++++++++ in countdown");
 
   // setInterval() runs stuff for a set interval of time - one second
-  var timeInterval = setInterval(function () {
+  timeInterval = setInterval(function () {
     // if time left - display it
     if (timeLeft > 1) {
       timerEl.textContent = timeLeft + ' seconds remaining';
@@ -131,33 +132,8 @@ function countdown() {
     // out of time - stop the timer and clear it out
     else {
       timerEl.textContent = "Time's Up";
-      clearInterval(timeInterval);
-      /*
-      displayMessage();*/
+      endGame();
     }
     // This runs every second on the second
   }, 1000);
 }
-
-// Displays the message one word at a time
-// Most likely - unneeded function
-function displayMessage() {
-  var wordCount = 0;
-
-  // Uses the `setInterval()` method to call a function to be executed every 1000 milliseconds
-  var msgInterval = setInterval(function () {
-    // If there are no more words left in the message
-    // word count started at 0 and moves through.
-    if (words[wordCount] === undefined) {
-      // Use `clearInterval()` to stop the timer
-      clearInterval(msgInterval);
-    } else {
-      // Display one word of the message in the main element from the html
-      mainEl.textContent = "hello world";
-      wordCount++;
-    }
-    // runs every second on the second.
-  }, 1000);
-}
-
-countdown();

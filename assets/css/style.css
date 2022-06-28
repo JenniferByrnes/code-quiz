@@ -68,18 +68,18 @@ p {
 /* for the displayed scores (not the button) */
 #view-high-scores-container {
   display: flex;
-  flex-flow: row wrap;
+
+  justify-content: flex-end;
   width: 75%;
   padding: 10px;
 }
-/* for the displayed scores (not the button) */
+/* for the displayed scores only (not the button) */
 #high-scores-container {
-  width: 66%;
-  padding: 10px;
+  flex-flow: row wrap;
 }
-/* for the displayed scores (not the button) */
+/* for the displayed the button) */
 #view-button-container {
-  width: 33%;
+  width: 50%;
   padding: 10px;
   justify-content: flex-end;
 }
@@ -112,7 +112,6 @@ p {
   box-shadow: 0 3px var(--grey);
 }
 
-
 /* form goes with endgame code */
 form {
   display: flex;
@@ -134,7 +133,6 @@ form .form-group {
   margin: 10px 6px 10px 0;
   flex: 1 100%;
 }
-
 
 footer {
   width: 100%;
