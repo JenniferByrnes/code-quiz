@@ -22,6 +22,7 @@ var playerScore = 0;
 var startButtonEl = document.getElementById("start-quiz-btn");
 var nextButtonEl = document.getElementById("next-btn");
 
+
 // OnClick to startQuiz function - Hide button and get questions
 var startQuiz = function() {
   console.log("starting quiz");
@@ -115,7 +116,6 @@ var selectAnswer = function(e) {
 }
 
 var countdown = function() {
-  console.log("+++++++++++++++ in countdown");
 
   // setInterval() runs stuff for a set interval of time - one second
   timeInterval = setInterval(function () {

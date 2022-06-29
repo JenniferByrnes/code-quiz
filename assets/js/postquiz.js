@@ -12,6 +12,10 @@ var viewBtnEl = document.getElementById("view-btn");
 // create array to hold winning scores prior to saving
 var highScoresArray = JSON.parse(localStorage.getItem("highScore")) || [];
 
+// Restart button 
+var restartButtonEl = document.getElementById("restart-quiz-btn");
+
+
 // Allow player to save score
 var endGame = function() {  
 
@@ -29,15 +33,13 @@ var endGame = function() {
 //Button clicked to view high scores
 var viewHighScoreClick = function (event) {
   event.preventDefault();
-  console.log("in function viewHighScores()");
+
   clearHighScores();
   renderHighScores();
 };  // end viewHighScoreClick function
 
-// Botton was clicked. This will save the winners initials to local storage in an array.
-// Player clicked "Save Score" to get here
+// Save Score Button was clicked - save the winners initials to local storage in an array.
 var saveButtonClicked = function (event) {
-  console.log("in saveButtonclicked function");
   event.preventDefault();
 
   // Winner must type initials
@@ -49,9 +51,6 @@ var saveButtonClicked = function (event) {
     console.log("returning false - empty initials");
     return false;
   }
-
-  // reset form fields for next winner's initials
-  document.querySelector("input[name='winner-name']").value = "";
 
   // set winnerObj values
   const winnerObj = {
@@ -66,25 +65,29 @@ var saveButtonClicked = function (event) {
 
   clearHighScores();
   renderHighScores();
-  resetGame();
+  resetGame(event);
 
 }; //end saveButtonClicked function
 
-var resetGame = function() {
-  console.log("in resetGame function");
+var resetGame = function(event) {
+  event.preventDefault();
+  console.log("in reset");
 
-    //This hides the quiz and save score sections
-    quizQuestionPageEl.setAttribute("class", "hide answers list-title");
-    endFormEl.setAttribute("class", "hide");
+  // reset form fields for next winner's initials
+  document.querySelector("input[name='winner-name']").value = "";
 
-    //This reveals the Start Quiz button and restart text
-    document.getElementById("start-text").innerHTML = restartText;
-    var quizStartEl = document.getElementById("start-quiz-id");
-    quizStartEl.setAttribute("class", "start-quiz-id");
+  //This hides the quiz and player score sections
+  quizQuestionPageEl.setAttribute("class", "hide answers list-title");
+  endFormEl.setAttribute("class", "hide");
 
-    // Reset question counter and player score
-    qIndex=0;
-    playerScore = 0;
+  //This reveals the Start Quiz button and restart text
+  document.getElementById("start-text").innerHTML = restartText;
+  var quizStartEl = document.getElementById("start-quiz-id");
+  quizStartEl.setAttribute("class", "start-quiz-id");
+
+  // Reset question counter and player score
+  qIndex=0;
+  playerScore = 0;
 }
 
 // Clear high score display
@@ -125,3 +128,6 @@ endFormEl.querySelector("#save-score").addEventListener("click", saveButtonClick
 
 // **View** high score - button clicked
 viewBtnEl.addEventListener("click", viewHighScoreClick);
+
+restartButtonEl.onclick=resetGame;
+

@@ -13,6 +13,11 @@ var questions = [
     message: "Which of the following is NOT used to declare variables?",
     choices: ["declare", "var", "let", "const"],
     correctAnswer: "declare"
+  },
+  {
+    message: "If x = '10' and y = '20', what is x + y?",
+    choices: ["30", "'30'", "'thirty'", "'1020'"],
+    correctAnswer: "'1020'"
   }
 ]
 
