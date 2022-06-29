@@ -2,6 +2,7 @@
 var endFormEl = document.getElementById("end-form");
 var restartQuizEl = document.getElementById("start-text");
 var restartText = "Would you like to play again?";
+var playerScoreEl = document.getElementById("player-score");
 
 // Div, Button and List to view high scores
 var viewDivEl = document.getElementById("view-high-score-div");
@@ -13,7 +14,10 @@ var highScoresArray = JSON.parse(localStorage.getItem("highScore")) || [];
 
 // Allow player to save score
 var endGame = function() {  
-  console.log("in endGame function");
+
+  // Show the player their score
+  playerScoreEl.innerHTML = ("innerHTML", "Your final score is:" + playerScore);
+  
   // Hide quiz, show end game form
   quizQuestionPageEl.classList.add('hide');
   endFormEl.setAttribute("class", "");
